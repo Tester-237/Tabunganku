@@ -1,0 +1,16 @@
+workflows:
+  android-apk:
+    name: Nabungku APK
+    max_build_duration: 30
+    instance_type: linux_x2
+    environment:
+      flutter: stable
+    scripts:
+      - name: Buat folder android
+        script: flutter create --platforms=android --project-name nabungku --org com.nabungku .
+      - name: Ambil dependency
+        script: flutter pub get
+      - name: Build APK
+        script: flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
